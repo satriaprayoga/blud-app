@@ -27,6 +27,6 @@ class Unit
    ];
 
    public static function all(){
-        return self::$unit_lists;
+        return collect(self::$unit_lists);
    }
 }

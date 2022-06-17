@@ -11,6 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Box, Container, TextField } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+import axios from 'axios';
 
 const columns = [
   { field: 'id', headerName: 'Kode Unit' },
@@ -26,6 +27,19 @@ const rows = [
 
 const Organization = () => {
   const [age, setAge] = React.useState('');
+  const [satker,setSatker]=React.useState([]);
+
+  React.useEffect(()=>{
+   
+  })
+
+  const loadSatker=async ()=>{
+    
+    const response=await axios.get('/api/satker');
+
+  }
+
+  }
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -72,6 +86,6 @@ const Organization = () => {
       </div>
     </div>
   )
-}
+
 
 export default Organization
