@@ -15,9 +15,9 @@ import axios from 'axios';
 
 const columns = [
   { field: 'id', headerName: 'Kode Unit' },
-  { field: 'namaUnit', headerName: 'Unit Organisasi'},
-  { field: 'singkatan', headerName: 'Singkatan'},
-  { field:'lokasi',headerName:'Lokasi'}
+  { field: 'namaUnit', headerName: 'Unit Organisasi' },
+  { field: 'singkatan', headerName: 'Singkatan' },
+  { field: 'lokasi', headerName: 'Lokasi' }
 ];
 
 const rows = [
@@ -27,23 +27,36 @@ const rows = [
 
 const Organization = () => {
   const [age, setAge] = React.useState('');
-  const [satker,setSatker]=React.useState([]);
+  const [satkers, setSatkers] = React.useState([]);
+  const [satker, setSatker] = React.useState("");
 
-  React.useEffect(()=>{
-   
-  })
+  React.useEffect(() => {
 
-  const loadSatker=async ()=>{
-    
-    const response=await axios.get('/api/satker');
+    loadSatkers()
+  }, [])
+
+  const loadSatkers = async () => {
+
+    try {
+      const response = await axios.get('/api/satker');
+      setSatkers(response.data.satkers)
+    } catch (error) {
+
+    }
 
   }
 
-  }
+
 
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  const handleSatkerChange = (event) => {
+    console.log(event.target.value)
+    setSatker(event.target.value)
+  }
+
   return (
     <div className="organization">
       <Sidebar />
@@ -51,8 +64,27 @@ const Organization = () => {
         <Navbar />
         <div className="listContainer">
           <Container>
-            <div className="listTitle">Unit Organisasi</div>
-            <h5>Satuan Kerja: Dinas Kesehatan</h5>
+          <div className="listTitle">Unit Organisasi</div>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl sx={{ minWidth: 200 }} size="small">
+                <InputLabel id="demo-simple-select-label" >Satuan Kerja</InputLabel>
+                <Select
+                  labelId="demo-satker-select-label"
+                  id="demo-satker-select"
+                  value={satker}
+                  label="Sub Unit"
+                  onChange={handleSatkerChange}
+                >
+                  {
+                    satkers.map((s, index) =>
+                      <MenuItem value={s.kode} key={index}>{s.nama}</MenuItem>
+                    )
+                  }
+                </Select>
+              </FormControl>
+            </Box>
+          </Container>
+          <Container>
             <Box sx={{ minWidth: 120 }}>
               <FormControl sx={{ minWidth: 200 }} size="small">
                 <InputLabel id="demo-simple-select-label" >Sub Unit</InputLabel>
@@ -87,5 +119,5 @@ const Organization = () => {
     </div>
   )
 
-
+}
 export default Organization

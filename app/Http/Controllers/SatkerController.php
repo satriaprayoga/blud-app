@@ -15,7 +15,7 @@ class SatkerController extends Controller
     public function index()
     {
         $data=Satker::all();
-        return response()->json(collect($data));
+        return response()->json(['satkers'=>$data]);
     }
 
     /**
