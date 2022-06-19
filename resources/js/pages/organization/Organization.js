@@ -29,8 +29,8 @@ const Organization = () => {
   const [age, setAge] = React.useState('');
   const [satkers, setSatkers] = React.useState([]);
   const [satker, setSatker] = React.useState("");
-  const [subunits,setSubunits]=React.useState([]);
-  const [subunit,setSubunit]=React.useState("");
+  const [subunits, setSubunits] = React.useState([]);
+  const [subunit, setSubunit] = React.useState("");
 
   React.useEffect(() => {
 
@@ -54,18 +54,24 @@ const Organization = () => {
     setAge(event.target.value);
   };
 
-  const handleSatkerChange =async (event) => {
+  const handleSatkerChange = async (event) => {
     console.log(event.target.value)
     setSatker(event.target.value)
     loadSubunit(event)
   }
 
-  const loadSubunit=async (event)=>{
+  const handleSubunitChange = async (event)=>{
+    console.log(event.target.value)
+    setSubunit(event.target.value)
+  }
+
+  const loadSubunit = async (event) => {
     try {
-      const response=await axios.get('/api/subunits/satker/'+event.target.value);
+      const response = await axios.get('/api/subunits/satker/' + event.target.value);
       console.log(response.data.subunits);
+      setSubunits(response.data.subunits);
     } catch (error) {
-      
+
     }
   }
 
@@ -76,15 +82,15 @@ const Organization = () => {
         <Navbar />
         <div className="listContainer">
           <Container>
-          <div className="listTitle">Unit Organisasi</div>
+            <div className="listTitle">Unit Organisasi</div>
             <Box sx={{ minWidth: 120 }}>
               <FormControl sx={{ minWidth: 200 }} size="small">
-                <InputLabel id="demo-simple-select-label" >Satuan Kerja</InputLabel>
+                <InputLabel id="demo-satker-select-label" >Satuan Kerja</InputLabel>
                 <Select
                   labelId="demo-satker-select-label"
                   id="demo-satker-select"
                   value={satker}
-                  label="Sub Unit"
+                  label="OPD"
                   onChange={handleSatkerChange}
                 >
                   {
@@ -99,21 +105,24 @@ const Organization = () => {
           <Container>
             <Box sx={{ minWidth: 120 }}>
               <FormControl sx={{ minWidth: 200 }} size="small">
-                <InputLabel id="demo-simple-select-label" >Sub Unit</InputLabel>
+                <InputLabel id="demo-subunit-select-label" >Sub Unit</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={age}
+                  labelId="demo-subunit-select-label"
+                  id="demo-subunit-select"
+                  value={subunit}
                   label="Sub Unit"
-                  onChange={handleChange}
+                  onChange={handleSubunitChange}
                 >
-                  <MenuItem value={1}>RSUD Cibinong</MenuItem>
-                  <MenuItem value={2}>RSUD Cileungsi</MenuItem>
-                  <MenuItem value={3}>RSUD Ciawi</MenuItem>
+                  {
+                    subunits.map((s, index) =>
+                      <MenuItem value={s.kode} key={index}>{s.nama}</MenuItem>
+                    )
+                  }
                 </Select>
               </FormControl>
             </Box>
           </Container>
+
         </div>
         <div className="listContainer">
           <div style={{ height: 400, width: '100%' }}>
