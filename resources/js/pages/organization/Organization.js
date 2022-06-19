@@ -29,6 +29,8 @@ const Organization = () => {
   const [age, setAge] = React.useState('');
   const [satkers, setSatkers] = React.useState([]);
   const [satker, setSatker] = React.useState("");
+  const [subunits,setSubunits]=React.useState([]);
+  const [subunit,setSubunit]=React.useState("");
 
   React.useEffect(() => {
 
@@ -52,9 +54,19 @@ const Organization = () => {
     setAge(event.target.value);
   };
 
-  const handleSatkerChange = (event) => {
+  const handleSatkerChange =async (event) => {
     console.log(event.target.value)
     setSatker(event.target.value)
+    loadSubunit(event)
+  }
+
+  const loadSubunit=async (event)=>{
+    try {
+      const response=await axios.get('/api/subunits/satker/'+event.target.value);
+      console.log(response.data.subunits);
+    } catch (error) {
+      
+    }
   }
 
   return (

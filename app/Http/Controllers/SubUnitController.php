@@ -15,7 +15,9 @@ class SubUnitController extends Controller
     public function index()
     {
         $data=SubUnit::all();
-        return response()->json(collect($data));
+        return response()->json([
+            "subunit"=>$data
+        ]);
     }
 
     /**
@@ -61,5 +63,15 @@ class SubUnitController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function findBySatkerKode($kode){
+        $data=SubUnit::all();
+        $collections=collect($data);
+        $filtered= $collections->where('kode_satker',$kode);
+        return response()->json([
+            "subunits"=>$filtered->all()
+
+        ]);
     }
 }
