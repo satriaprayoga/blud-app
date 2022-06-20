@@ -15,7 +15,7 @@ import axios from 'axios';
 
 const columns = [
   { field: 'id', headerName: 'Kode Unit' },
-  { field: 'namaUnit', headerName: 'Unit Organisasi' },
+  { field: 'namaUnit', headerName: 'Unit Organisasi', minWidth: 200 },
   { field: 'singkatan', headerName: 'Singkatan' },
   { field: 'lokasi', headerName: 'Lokasi' }
 ];
@@ -31,9 +31,9 @@ const Organization = () => {
   const [satker, setSatker] = React.useState("");
   const [subunits, setSubunits] = React.useState([]);
   const [subunit, setSubunit] = React.useState("");
-  const [units,setUnits]=React.useState([]);
-  const [rows,setRows]=React.useState([]);
-  const [unit,setUnit]=React.useState("");
+  const [units, setUnits] = React.useState([]);
+  const [rows, setRows] = React.useState([]);
+  const [unit, setUnit] = React.useState("");
 
   React.useEffect(() => {
 
@@ -63,7 +63,7 @@ const Organization = () => {
     loadSubunit(event)
   }
 
-  const handleSubunitChange = async (event)=>{
+  const handleSubunitChange = async (event) => {
     console.log(event.target.value)
     setSubunit(event.target.value)
     loadUnits(event)
@@ -79,17 +79,17 @@ const Organization = () => {
     }
   }
 
-  const loadUnits = async (event)=> {
+  const loadUnits = async (event) => {
     try {
-      const response=await axios.get('/api/units/subunit/'+event.target.value);
-     // setUnits(response.data.units);
-      setRows(response.data.units.map(e=>{
-        return{
+      const response = await axios.get('/api/units/subunit/' + event.target.value);
+      // setUnits(response.data.units);
+      setRows(response.data.units.map(e => {
+        return {
           id: e.kode, namaUnit: e.nama, singkatan: e.singkatan, lokasi: e.lokasi
         }
       }))
     } catch (error) {
-      
+
     }
   }
 
@@ -144,13 +144,19 @@ const Organization = () => {
         </div>
         <div className="listContainer">
           <div style={{ height: 400, width: '100%' }}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
-              checkboxSelection
-            />
+            <div style={{ display: 'flex', height: '100%' }}>
+              <DataGrid
+                onRowDoubleClick={(params,event)=>{
+                  console.log(params.row);
+                }}
+                rows={rows}
+                columns={columns}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+                checkboxSelection
+              />
+            </div>
+
           </div>
         </div>
 
