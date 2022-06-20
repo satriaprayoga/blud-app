@@ -1,6 +1,7 @@
 import './sidebar.scss'
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { AccountBalance, AccountBalanceWallet, AccountTree, ApartmentOutlined, Assignment, BookmarkAddedOutlined, BookmarkOutlined, PersonOutline, PointOfSaleOutlined, Settings, ShoppingCartOutlined, SummarizeOutlined } from '@mui/icons-material';
+import {Link} from 'react-router-dom';
 
 function Sidebar(){
     return (
@@ -11,10 +12,12 @@ function Sidebar(){
              <hr />
              <div className='center'>
                  <ul>
+                     <Link to='/' style={{textDecoration:'none'}}>
                      <li>
                          <DashboardIcon className="icon"/>
                          <span>Dashboard</span>
                      </li>
+                     </Link>
                      <p className="title">ADMINISTRATOR</p>
                      <li>
                          <PersonOutline className="icon"/>
@@ -33,10 +36,12 @@ function Sidebar(){
                          <span>Konfigurasi</span>
                      </li>
                      <p className="title">PENGATURAN BLUD</p>
+                     <Link to='/satker' style={{textDecoration:'none'}}>
                      <li>
                          <ApartmentOutlined className="icon"/>
                          <span>Unit Organisasi</span>
                      </li>
+                     </Link>
                      <li>
                          <AccountBalanceWallet className="icon"/>
                          <span>Saldo Awal</span>
