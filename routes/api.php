@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });
  */
-Route::resource('units',UnitController::class);
+#Route::resource('units',UnitController::class);
 Route::resource('satker',SatkerController::class);
 //Route::resource('subunits',SubUnitController::class);
 Route::get('subunits/satker/{kode}', [SubUnitController::class,'findBySatkerKode']);
+Route::get('units/subunit/{kode_sub}',[UnitController::class,'findBySubunit']);

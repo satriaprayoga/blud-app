@@ -7,12 +7,12 @@ class Unit
 {
    private static $unit_lists=[
     [
-        "kode"=>"",
-        "nama"=>"",
-        "singkatan"=>"",
-        "sumber_anggaran"=>"",
-        "kode_sub_unit"=>"",
-        "lokasi"=>"",
+        "kode"=>"102010006",
+        "nama"=>"BLUD RSUD Cibinong",
+        "singkatan"=>"RSUDCBN",
+        "sumber_anggaran"=>"BLUD RSUD CBN",
+        "kode_sub_unit"=>"1.02.0.00.0.00.01.0006",
+        "lokasi"=>"Cibinong",
         "bend_nama"=>"",
         "bend_nip"=>"",
         "bend_jabatan"=>"",
@@ -27,6 +27,6 @@ class Unit
    ];
 
    public static function all(){
-        return collect(self::$unit_lists);
+        return self::$unit_lists;
    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SubUnit;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 
@@ -62,5 +63,12 @@ class UnitController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function findBySubunit($kode_sub){
+        $data=Unit::all();
+        $collections=collect($data);
+        $filtered=$collections->where('kode_sub_unit',$kode_sub);
+        return response()->json(["units"=>$filtered->all()]);
     }
 }

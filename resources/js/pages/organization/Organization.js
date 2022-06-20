@@ -20,9 +20,9 @@ const columns = [
   { field: 'lokasi', headerName: 'Lokasi' }
 ];
 
-const rows = [
+/* const rows = [
   { id: 102010006, namaUnit: 'BLUD RSUD Cibinong', singkatan: 'BLUD RSUD CBN', lokasi: '-' }
-];
+]; */
 
 
 const Organization = () => {
@@ -31,6 +31,9 @@ const Organization = () => {
   const [satker, setSatker] = React.useState("");
   const [subunits, setSubunits] = React.useState([]);
   const [subunit, setSubunit] = React.useState("");
+  const [units,setUnits]=React.useState([]);
+  const [rows,setRows]=React.useState([]);
+  const [unit,setUnit]=React.useState("");
 
   React.useEffect(() => {
 
@@ -63,6 +66,7 @@ const Organization = () => {
   const handleSubunitChange = async (event)=>{
     console.log(event.target.value)
     setSubunit(event.target.value)
+    loadUnits(event)
   }
 
   const loadSubunit = async (event) => {
@@ -72,6 +76,20 @@ const Organization = () => {
       setSubunits(response.data.subunits);
     } catch (error) {
 
+    }
+  }
+
+  const loadUnits = async (event)=> {
+    try {
+      const response=await axios.get('/api/units/subunit/'+event.target.value);
+     // setUnits(response.data.units);
+      setRows(response.data.units.map(e=>{
+        return{
+          id: e.kode, namaUnit: e.nama, singkatan: e.singkatan, lokasi: e.lokasi
+        }
+      }))
+    } catch (error) {
+      
     }
   }
 
