@@ -12,6 +12,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Box, Container, TextField } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const columns = [
   { field: 'id', headerName: 'Kode Unit' },
@@ -34,6 +35,8 @@ const Organization = () => {
   const [units, setUnits] = React.useState([]);
   const [rows, setRows] = React.useState([]);
   const [unit, setUnit] = React.useState("");
+
+  let navigate=useNavigate();
 
   React.useEffect(() => {
 
@@ -147,7 +150,10 @@ const Organization = () => {
             <div style={{ display: 'flex', height: '100%' }}>
               <DataGrid
                 onRowDoubleClick={(params,event)=>{
+                  event.preventDefault();
                   console.log(params.row);
+                  navigate(`/unit/${params.row.id}`)
+
                 }}
                 rows={rows}
                 columns={columns}
