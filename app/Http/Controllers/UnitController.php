@@ -39,7 +39,10 @@ class UnitController extends Controller
      */
     public function show($id)
     {
-        //
+        $data=Unit::all();
+        $collections=collect($data);
+        return response()->json(["unit"=>$collections->firstWhere('kode',$id)]);
+
     }
 
     /**
