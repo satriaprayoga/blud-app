@@ -29,31 +29,24 @@ const ViewOrganization = () => {
 
 
   return (
-    <div className="organization">
+    <div className="single">
       <Sidebar />
-      <div className="organizationContainer">
+      <div className="singleContainer">
         <Navbar />
-        
-        <div className="listContainer">
-          <Grid container spacing={2}>
-            <Grid item xs={4} md={8}>
-              <div className="listTitle">
-                {unit.nama}
-              </div>
-              <p>{unit.singkatan} - {unit.kode}</p>
-            </Grid>
-            <Grid item xs={8} md={4}>
-              <div className='buttonGroup'>
-                <ButtonGroup variant='outlined'>
-                  <Button><EditOutlined /></Button>
-                  <Button><ClearOutlined /></Button>
-                </ButtonGroup>
-              </div>
-            </Grid>
-          </Grid>
+
+        <div className="top">
+          <div className='left'>
+            <div className='editButton'>
+              <ButtonGroup variant='outlined'>
+                <Button><EditOutlined /></Button>
+                <Button><ClearOutlined /></Button>
+              </ButtonGroup>
+            </div>
+            <h1 className="title">{unit.nama}</h1>
+          </div>
         </div>
         <div className="listContainer">
-          
+
         </div>
       </div>
     </div>
