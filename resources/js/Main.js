@@ -5,6 +5,7 @@ import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import Organization from "./pages/organization/Organization";
 import routes from './config/routes';
 import ViewOrganization from "./pages/organization/ViewOrganization";
+import UnitForm from "./pages/organization/UnitForm";
 
 function Main(){
     return(
@@ -12,8 +13,16 @@ function Main(){
            <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="satker" element={<Organization/>}/>
-                <Route path="unit/:kode" element={<ViewOrganization/>}/>
-                
+                <Route path="unit">
+                    <Route path=":kode" element={<ViewOrganization/>}/>
+                    <Route path="form">
+                        <Route index element={<UnitForm/>}/>
+                        <Route path=":kode" element={<UnitForm/>}/>
+                    </Route>
+                </Route>
+               {/*  <Route path="unit/:kode" element={<ViewOrganization/>}/>
+                <Route path="unit/form/:kode" element={<UnitForm/>}/>
+                <Route path="unit/form/" element={<UnitForm/>}/> */}
 
            </Routes>
         </Router>
