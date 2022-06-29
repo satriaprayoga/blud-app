@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Grid } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 
@@ -12,6 +12,7 @@ import './viewOrganization.scss';
 const ViewOrganization = () => {
   const [unit, setUnit] = useState({});
   let { kode } = useParams();
+  let navigate=useNavigate();
 
   const loadUnit = async () => {
     try {
@@ -38,7 +39,7 @@ const ViewOrganization = () => {
           <div className='left'>
             <div className='editButton'>
               <ButtonGroup variant='outlined'>
-                <Button><EditOutlined /></Button>
+                <Button component={Link} to={`/unit/form/${unit.kode}`}><EditOutlined /></Button>
                 <Button><ClearOutlined /></Button>
               </ButtonGroup>
             </div>

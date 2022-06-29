@@ -20,10 +20,6 @@ function Main(){
                         <Route path=":kode" element={<UnitForm/>}/>
                     </Route>
                 </Route>
-               {/*  <Route path="unit/:kode" element={<ViewOrganization/>}/>
-                <Route path="unit/form/:kode" element={<UnitForm/>}/>
-                <Route path="unit/form/" element={<UnitForm/>}/> */}
-
            </Routes>
         </Router>
     )
