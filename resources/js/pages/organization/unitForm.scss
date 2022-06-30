@@ -14,7 +14,7 @@
         display: flex;
   
         h1 {
-          color: lightgray;
+          color: rgb(36, 16, 16);
           font-size: 20px;
         }
   
@@ -37,7 +37,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
-            justify-content: space-around;
+            justify-content:space-around ;
+            align-content: center;
   
             .formInput {
               width: 40%;

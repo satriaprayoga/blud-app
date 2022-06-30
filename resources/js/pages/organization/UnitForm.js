@@ -59,8 +59,61 @@ const UnitForm = () => {
                   <label>Lokasi</label>
                   <input type="text" value={unit.lokasi}></input>
                 </div>
-                <button className='save'><SaveOutlined/></button>
+                <div className='formInput'>
+                  <h1>Bendahara BLUD</h1>
+                  <label>Nama Bendahara</label>
+                  <input type="text" value={unit.bend_nama}></input>
+                </div>
+                <div className='formInput'>
+                  <label>NIP Bendahara</label>
+                  <input type="text" value={unit.bend_nip}></input>
+                </div>
+                <div className='formInput'>
+                  <label>Jabatan Bendahara</label>
+                  <input type="text" value={unit.bend_jabatan}></input>
+                </div>
+                <div className='formInput'>
+                <hr/>
+                </div>
+                <div className='formInput'>
+                  <h1>Penandatangan SPTJM</h1>
+                  <label>Nama</label>
+                  <input type="text" value={unit.bend_nama}></input>
+                </div>
+                <div className='formInput'>
+                  <label>NIP</label>
+                  <input type="text" value={unit.bend_nip}></input>
+                </div>
+                <div className='formInput'>
+                  <label>Jabatan</label>
+                  <input type="text" value={unit.bend_jabatan}></input>
+                </div>
+                <div className='formInput'>
+                <hr/>
+                </div>
+                <div className='formInput'>
+                <h1>Penandatangan SP2B</h1>
+                <hr/>
+                  <label>Nama</label>
+                  <input type="text" value={unit.bend_nama}></input>
+                </div>
+                <div className='formInput'>
+                  <label>NIP</label>
+                  <input type="text" value={unit.bend_nip}></input>
+                </div>
+                <div className='formInput'>
+                  <label>Jabatan</label>
+                  <input type="text" value={unit.bend_jabatan}></input>
+                </div>
+                <div className='formInput'>
+                <hr/>
+                </div>
+                <div className='formInput'>
+                <button className='save' type="submit"><SaveOutlined/></button>
+                </div>
+                <div className='formInput'>
                 <button className='cancel'><CloseOutlined/></button>
+                </div>
               </form>
             </div>
           </div>
