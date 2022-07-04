@@ -37,7 +37,13 @@ class SatkerController extends Controller
      */
     public function show($id)
     {
-        //
+        $satker=Satker::find($id);
+        if(is_null($satker)){
+            return response()->json('Data tidak ditemukan',404);
+        }
+        return response()->json([
+            'satker'=>$satker
+        ]);
     }
 
     /**

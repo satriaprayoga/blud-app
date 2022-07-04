@@ -47,6 +47,7 @@ const Organization = () => {
 
     try {
       const response = await axios.get('/api/satker');
+      console.log(response.data.satkers)
       setSatkers(response.data.satkers)
     } catch (error) {
 
