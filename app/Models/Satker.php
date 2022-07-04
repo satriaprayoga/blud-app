@@ -2,20 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-
-class Satker 
+class Satker extends Model
 {
-    private static $all_satker=[
-        [
-            "kode"=>"1.02.0.00.0.00.01.0000",
-            "nama"=>"DINAS KESEHATAN"
-        ]
-    ];
-
-    public static function all(){
-        return self::$all_satker;
-    }
-
-
+    use HasFactory;
 }
