@@ -41,8 +41,10 @@ class SatkerController extends Controller
         if(is_null($satker)){
             return response()->json('Data tidak ditemukan',404);
         }
+        $units=$satker->units;
         return response()->json([
-            'satker'=>$satker
+            'satker'=>$satker,
+            'units'=>$units
         ]);
     }
 

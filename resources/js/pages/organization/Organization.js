@@ -21,13 +21,9 @@ const columns = [
   { field: 'lokasi', headerName: 'Lokasi' }
 ];
 
-/* const rows = [
-  { id: 102010006, namaUnit: 'BLUD RSUD Cibinong', singkatan: 'BLUD RSUD CBN', lokasi: '-' }
-]; */
 
 
 const Organization = () => {
-  const [age, setAge] = React.useState('');
   const [satkers, setSatkers] = React.useState([]);
   const [satker, setSatker] = React.useState("");
   const [subunits, setSubunits] = React.useState([]);
@@ -64,13 +60,27 @@ const Organization = () => {
   const handleSatkerChange = async (event) => {
     console.log(event.target.value)
     setSatker(event.target.value)
-    loadSubunit(event)
+    loadSatker(event)
+    
   }
 
   const handleSubunitChange = async (event) => {
     console.log(event.target.value)
     setSubunit(event.target.value)
     loadUnits(event)
+  }
+
+  const loadSatker=async (event)=>{
+    try{
+      const response = await axios.get('/api/satker/'+event.target.value);
+      console.log(response.data.satker);
+      console.log(response.data.units);
+      
+      setSubunits(response.data.units);
+      
+    }catch(error){
+
+    }
   }
 
   const loadSubunit = async (event) => {
@@ -117,7 +127,7 @@ const Organization = () => {
                 >
                   {
                     satkers.map((s, index) =>
-                      <MenuItem value={s.kode} key={index}>{s.nama}</MenuItem>
+                      <MenuItem value={s.id} key={index}>{s.nama}</MenuItem>
                     )
                   }
                 </Select>
@@ -137,7 +147,7 @@ const Organization = () => {
                 >
                   {
                     subunits.map((s, index) =>
-                      <MenuItem value={s.kode} key={index}>{s.nama}</MenuItem>
+                      <MenuItem value={s.id} key={index}>{s.nama}</MenuItem>
                     )
                   }
                 </Select>

@@ -39,10 +39,15 @@ class UnitController extends Controller
      */
     public function show($id)
     {
-        $data=Unit::all();
-        $collections=collect($data);
-        return response()->json(["unit"=>$collections->firstWhere('kode',$id)]);
-
+        $unit=Unit::find($id);
+        if(is_null($unit)){
+            return response()->json('Data tidak ditemukan',404);
+        }
+        $subunits=$unit->subunits;
+        return response()->json([
+            'unit'=>$unit,
+            'subunits'=>$subunits
+        ]);
     }
 
     /**

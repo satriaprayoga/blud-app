@@ -6,13 +6,14 @@ import Organization from "./pages/organization/Organization";
 import routes from './config/routes';
 import ViewOrganization from "./pages/organization/ViewOrganization";
 import UnitForm from "./pages/organization/UnitForm";
+import Units from "./pages/organization/Units";
 
 function Main(){
     return(
         <Router>
            <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="satker" element={<Organization/>}/>
+                <Route path="satker" element={<Units/>}/>
                 <Route path="unit">
                     <Route path=":kode" element={<ViewOrganization/>}/>
                     <Route path="form">
